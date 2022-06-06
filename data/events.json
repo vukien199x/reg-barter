@@ -1,0 +1,877 @@
+{
+  "nfc_step_enabled": {
+    "additional_data": {
+      "enabled": false,
+      "experiments": [
+        {
+          "feature_flag_key": "nfc_enabled",
+          "feature_flag_variation": true
+        },
+        {
+          "feature_flag_key": "selfie_image_flash_temp_android",
+          "feature_flag_variation": false
+        },
+        {
+          "feature_flag_key": "waiting_screen_with_animation_temp_android",
+          "feature_flag_variation": true
+        }
+      ],
+      "reason": "document_unsupported",
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "name": "nfc_step_enabled",
+    "origin": "isSDKAndroid"
+  },
+  "client_started": {
+    "additional_data": {
+      "appPackageName": "com.flutterwave.flybarter",
+      "appVersionCode": 40039,
+      "implementationType": "sdk",
+      "sdkApiVersion": "3",
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "name": "client_started",
+    "origin": "isSDKAndroid"
+  },
+  "device_info_received": {
+    "additional_data": {
+      "device_info": {
+        "android_sdk_level": "28",
+        "android_version": "REL",
+        "audio_codecs": [
+          {
+            "name": "OMX.google.aac.encoder",
+            "types": [
+              "audio/mp4a-latm"
+            ]
+          },
+          {
+            "name": "OMX.google.amrnb.encoder",
+            "types": [
+              "audio/3gpp"
+            ]
+          },
+          {
+            "name": "OMX.google.amrwb.encoder",
+            "types": [
+              "audio/amr-wb"
+            ]
+          },
+          {
+            "name": "OMX.google.flac.encoder",
+            "types": [
+              "audio/flac"
+            ]
+          }
+        ],
+        "manufacturer": "Sony",
+        "market_name": "Sony",
+        "model": "G8142",
+        "platform": "android",
+        "veriff_sdk_version": "4.6.0",
+        "video_codecs": [
+          {
+            "name": "OMX.qcom.video.encoder.avc",
+            "types": [
+              {
+                "colors": [
+                  2141391878,
+                  2141391876,
+                  2141391880,
+                  2141391879,
+                  2130708361,
+                  2135033992,
+                  21
+                ],
+                "mime_type": "video/avc"
+              }
+            ]
+          },
+          {
+            "name": "OMX.google.h264.encoder",
+            "types": [
+              {
+                "colors": [
+                  2135033992,
+                  19,
+                  21,
+                  2130708361
+                ],
+                "mime_type": "video/avc"
+              }
+            ]
+          },
+          {
+            "name": "OMX.qcom.video.encoder.h263",
+            "types": [
+              {
+                "colors": [
+                  2141391878,
+                  2141391876,
+                  2141391880,
+                  2141391879,
+                  2130708361,
+                  2135033992,
+                  21
+                ],
+                "mime_type": "video/3gpp"
+              }
+            ]
+          },
+          {
+            "name": "OMX.google.h263.encoder",
+            "types": [
+              {
+                "colors": [
+                  2135033992,
+                  19,
+                  21,
+                  2130708361
+                ],
+                "mime_type": "video/3gpp"
+              }
+            ]
+          },
+          {
+            "name": "OMX.qcom.video.encoder.hevc",
+            "types": [
+              {
+                "colors": [
+                  2141391878,
+                  2141391876,
+                  2141391880,
+                  2141391879,
+                  2130708361,
+                  2135033992,
+                  21
+                ],
+                "mime_type": "video/hevc"
+              }
+            ]
+          },
+          {
+            "name": "OMX.qcom.video.encoder.mpeg4",
+            "types": [
+              {
+                "colors": [
+                  2141391878,
+                  2141391876,
+                  2141391880,
+                  2141391879,
+                  2130708361,
+                  2135033992,
+                  21
+                ],
+                "mime_type": "video/mp4v-es"
+              }
+            ]
+          },
+          {
+            "name": "OMX.google.mpeg4.encoder",
+            "types": [
+              {
+                "colors": [
+                  2135033992,
+                  19,
+                  21,
+                  2130708361
+                ],
+                "mime_type": "video/mp4v-es"
+              }
+            ]
+          },
+          {
+            "name": "OMX.qcom.video.encoder.vp8",
+            "types": [
+              {
+                "colors": [
+                  2141391878,
+                  2141391876,
+                  2141391880,
+                  2141391879,
+                  2130708361,
+                  2135033992,
+                  21
+                ],
+                "mime_type": "video/x-vnd.on2.vp8"
+              }
+            ]
+          },
+          {
+            "name": "OMX.google.vp8.encoder",
+            "types": [
+              {
+                "colors": [
+                  2135033992,
+                  19,
+                  21,
+                  2130708361
+                ],
+                "mime_type": "video/x-vnd.on2.vp8"
+              }
+            ]
+          },
+          {
+            "name": "OMX.google.vp9.encoder",
+            "types": [
+              {
+                "colors": [
+                  2135033992,
+                  19,
+                  21,
+                  2130708361
+                ],
+                "mime_type": "video/x-vnd.on2.vp9"
+              }
+            ]
+          }
+        ]
+      },
+      "experiments": [
+        {
+          "feature_flag_key": "nfc_enabled",
+          "feature_flag_variation": true
+        },
+        {
+          "feature_flag_key": "selfie_image_flash_temp_android",
+          "feature_flag_variation": false
+        },
+        {
+          "feature_flag_key": "waiting_screen_with_animation_temp_android",
+          "feature_flag_variation": true
+        }
+      ],
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "analytics",
+    "name": "device_info_received",
+    "origin": "isSDKAndroid",
+    "type": "info"
+  },
+  "language_assigned": {
+    "additional_data": {
+      "language": "GB",
+      "preselected": true,
+      "preselected_type": "browser",
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "name": "language_assigned",
+    "origin": "isSDKAndroid"
+  },
+  "intro_screen_shown": {
+    "additional_data": {
+      "experiments": [
+        {
+          "feature_flag_key": "nfc_enabled",
+          "feature_flag_variation": true
+        },
+        {
+          "feature_flag_key": "selfie_image_flash_temp_android",
+          "feature_flag_variation": false
+        },
+        {
+          "feature_flag_key": "waiting_screen_with_animation_temp_android",
+          "feature_flag_variation": true
+        }
+      ],
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "intro_screen_shown",
+    "name": "intro_screen_shown",
+    "origin": "isSDKAndroid",
+    "type": "ui"
+  },
+  "intro_screen_start_button_clicked": {
+    "additional_data": {
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "intro_screen_button_clicked",
+    "name": "intro_screen_start_button_clicked",
+    "origin": "isSDKAndroid",
+    "type": "ui"
+  },
+  "hardware_test_successful": {
+    "additional_data": {
+      "message": "Camera permissions granted",
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "camera",
+    "name": "hardware_test_successful",
+    "origin": "isSDKAndroid",
+    "type": "business"
+  },
+  "country_select_screen_shown": {
+    "additional_data": {
+      "experiments": [
+        {
+          "feature_flag_key": "nfc_enabled",
+          "feature_flag_variation": true
+        },
+        {
+          "feature_flag_key": "selfie_image_flash_temp_android",
+          "feature_flag_variation": false
+        },
+        {
+          "feature_flag_key": "waiting_screen_with_animation_temp_android",
+          "feature_flag_variation": true
+        }
+      ],
+      "geoip_country": "GB",
+      "preselected": false,
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "country",
+    "name": "country_select_screen_shown",
+    "origin": "isSDKAndroid",
+    "type": "business"
+  },
+  "country_select_dropdown_item_chosen": {
+    "additional_data": {
+      "country": "GB",
+      "geoip_country": "GB",
+      "preselected": false,
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "country",
+    "name": "country_select_dropdown_item_chosen",
+    "origin": "isSDKAndroid",
+    "type": "business"
+  },
+  "country_selected": {
+    "additional_data": {
+      "country": "GB",
+      "geoip_country": "VN",
+      "preselected": false,
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "country",
+    "name": "country_selected",
+    "origin": "isSDKAndroid",
+    "type": "business"
+  },
+  "document_select_screen_shown": {
+    "additional_data": {
+      "experiments": [
+        {
+          "feature_flag_key": "nfc_enabled",
+          "feature_flag_variation": true
+        },
+        {
+          "feature_flag_key": "selfie_image_flash_temp_android",
+          "feature_flag_variation": false
+        },
+        {
+          "feature_flag_key": "waiting_screen_with_animation_temp_android",
+          "feature_flag_variation": true
+        }
+      ],
+      "possible_documents": [
+        "DRIVERS_LICENSE",
+        "ID_CARD",
+        "PASSPORT",
+        "RESIDENCE_PERMIT"
+      ],
+      "preselected": false,
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "doc-select",
+    "name": "document_select_screen_shown",
+    "origin": "isSDKAndroid",
+    "type": "ui"
+  },
+  "document_from_list_chosen": {
+    "additional_data": {
+      "document": "DRIVERS_LICENSE",
+      "preselected": false,
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "doc-select",
+    "name": "document_from_list_chosen",
+    "origin": "isSDKAndroid",
+    "type": "ui"
+  },
+  "doc-select": {
+    "additional_data": {
+      "message": "Document selected: DRIVERS_LICENSE",
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "doc-select",
+    "name": "doc-select",
+    "origin": "isSDKAndroid",
+    "type": "business"
+  },
+  "document_selected": {
+    "additional_data": {
+      "document": "DRIVERS_LICENSE",
+      "preselected": false,
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "doc-select",
+    "name": "document_selected",
+    "origin": "isSDKAndroid",
+    "type": "ui"
+  },
+  "tos_accepted": {
+    "additional_data": {
+      "message": "User started the flow",
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "doc-select",
+    "name": "tos_accepted",
+    "origin": "isSDKAndroid",
+    "type": "business"
+  },
+  "session-started": {
+    "additional_data": {
+      "experiments": [
+        {
+          "feature_flag_key": "nfc_enabled",
+          "feature_flag_variation": true
+        },
+        {
+          "feature_flag_key": "selfie_image_flash_temp_android",
+          "feature_flag_variation": false
+        },
+        {
+          "feature_flag_key": "waiting_screen_with_animation_temp_android",
+          "feature_flag_variation": true
+        }
+      ],
+      "message": "Session started",
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "verification",
+    "name": "session-started",
+    "origin": "isSDKAndroid",
+    "type": "business"
+  },
+  "camera-started": {
+    "additional_data": {
+      "message": "Permissions are granted and camera flow is started",
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "verification",
+    "name": "camera-started",
+    "origin": "isSDKAndroid",
+    "type": "business"
+  },
+  "document_front_screen_shown": {
+    "additional_data": {
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "camera_screen",
+    "name": "document_front_screen_shown",
+    "origin": "isSDKAndroid",
+    "type": "ui"
+  },
+  "video-started": {
+    "additional_data": {
+      "message": "Local video started",
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "camera",
+    "name": "video-started",
+    "origin": "isSDKAndroid",
+    "type": "business"
+  },
+  "video_first_frame_received": {
+    "additional_data": {
+      "codec": "OMX.qcom.video.encoder.avc",
+      "height": 480,
+      "veriff_sdk_version": "4.6.0",
+      "width": 864
+    },
+    "app": "mobile",
+    "feature": "camera",
+    "name": "video_first_frame_received",
+    "origin": "isSDKAndroid",
+    "type": "info"
+  },
+  "document_front_screen_take_picture_clicked": {
+    "additional_data": {
+      "delay": 23678,
+      "experiments": [
+        {
+          "feature_flag_key": "nfc_enabled",
+          "feature_flag_variation": true
+        },
+        {
+          "feature_flag_key": "selfie_image_flash_temp_android",
+          "feature_flag_variation": false
+        },
+        {
+          "feature_flag_key": "waiting_screen_with_animation_temp_android",
+          "feature_flag_variation": true
+        }
+      ],
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "camera_screen",
+    "name": "document_front_screen_take_picture_clicked",
+    "origin": "isSDKAndroid",
+    "type": "ui"
+  },
+  "capture_approved": {
+    "additional_data": {
+      "message": "Capture: document-front-pre",
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "selfid",
+    "name": "capture_approved",
+    "origin": "isSDKAndroid",
+    "type": "business"
+  },
+  "document-front_approved": {
+    "additional_data": {
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "image",
+    "name": "document-front_approved",
+    "origin": "isSDKAndroid",
+    "type": "business"
+  },
+  "document_back_screen_shown": {
+    "additional_data": {
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "camera_screen",
+    "name": "document_back_screen_shown",
+    "origin": "isSDKAndroid",
+    "type": "ui"
+  },
+  "video_file_saved": {
+    "additional_data": {
+      "duration": 24995,
+      "file_length": 723698,
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "camera",
+    "name": "video_file_saved",
+    "origin": "isSDKAndroid",
+    "type": "info"
+  },
+  "document_back_screen_take_picture_clicked": {
+    "additional_data": {
+      "delay": 4989,
+      "experiments": [
+        {
+          "feature_flag_key": "nfc_enabled",
+          "feature_flag_variation": true
+        },
+        {
+          "feature_flag_key": "selfie_image_flash_temp_android",
+          "feature_flag_variation": false
+        },
+        {
+          "feature_flag_key": "waiting_screen_with_animation_temp_android",
+          "feature_flag_variation": true
+        }
+      ],
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "camera_screen",
+    "name": "document_back_screen_take_picture_clicked",
+    "origin": "isSDKAndroid",
+    "type": "ui"
+  },
+  "document-back_approved": {
+    "additional_data": {
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "image",
+    "name": "document-back_approved",
+    "origin": "isSDKAndroid",
+    "type": "business"
+  },
+  "portrait_auto_capture_enabled": {
+    "additional_data": {
+      "enabled": false,
+      "experiments": [
+        {
+          "feature_flag_key": "nfc_enabled",
+          "feature_flag_variation": true
+        },
+        {
+          "feature_flag_key": "selfie_image_flash_temp_android",
+          "feature_flag_variation": false
+        },
+        {
+          "feature_flag_key": "waiting_screen_with_animation_temp_android",
+          "feature_flag_variation": true
+        }
+      ],
+      "reason": "flag_disabled",
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "name": "portrait_auto_capture_enabled",
+    "origin": "isSDKAndroid"
+  },
+  "portrait_screen_shown": {
+    "additional_data": {
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "camera_screen",
+    "name": "portrait_screen_shown",
+    "origin": "isSDKAndroid",
+    "type": "ui"
+  },
+  "portrait_screen_take_picture_clicked": {
+    "additional_data": {
+      "delay": 11329,
+      "experiments": [
+        {
+          "feature_flag_key": "nfc_enabled",
+          "feature_flag_variation": true
+        },
+        {
+          "feature_flag_key": "selfie_image_flash_temp_android",
+          "feature_flag_variation": false
+        },
+        {
+          "feature_flag_key": "waiting_screen_with_animation_temp_android",
+          "feature_flag_variation": true
+        }
+      ],
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "camera_screen",
+    "name": "portrait_screen_take_picture_clicked",
+    "origin": "isSDKAndroid",
+    "type": "ui"
+  },
+  "face_approved": {
+    "additional_data": {
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "image",
+    "name": "face_approved",
+    "origin": "isSDKAndroid",
+    "type": "business"
+  },
+  "uploading": {
+    "additional_data": {
+      "message": "",
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "upload",
+    "name": "uploading",
+    "origin": "isSDKAndroid",
+    "type": "business"
+  },
+  "waiting_decision_screen_shown": {
+    "additional_data": {
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "decision_waiting",
+    "name": "waiting_decision_screen_shown",
+    "origin": "isSDKAndroid",
+    "type": "ui"
+  },
+  "upload_screen_shown": {
+    "additional_data": {
+      "message": "",
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "upload",
+    "name": "upload_screen_shown",
+    "origin": "isSDKAndroid",
+    "type": "info"
+  },
+  "upload_success": {
+    "additional_data": {
+      "message": "0",
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "upload",
+    "name": "upload_success",
+    "origin": "isSDKAndroid",
+    "type": "info"
+  },
+  "session-submitted": {
+    "additional_data": {
+      "experiments": [
+        {
+          "feature_flag_key": "nfc_enabled",
+          "feature_flag_variation": true
+        },
+        {
+          "feature_flag_key": "selfie_image_flash_temp_android",
+          "feature_flag_variation": false
+        },
+        {
+          "feature_flag_key": "waiting_screen_with_animation_temp_android",
+          "feature_flag_variation": true
+        }
+      ],
+      "message": "0",
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "verification",
+    "name": "session-submitted",
+    "origin": "isSDKAndroid",
+    "type": "business"
+  },
+  "decision_received": {
+    "additional_data": {
+      "decision": "declined",
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "decision_waiting",
+    "name": "decision_received",
+    "origin": "isSDKAndroid",
+    "type": "ui"
+  },
+  "success": {
+    "additional_data": {
+      "experiments": [
+        {
+          "feature_flag_key": "nfc_enabled",
+          "feature_flag_variation": true
+        },
+        {
+          "feature_flag_key": "selfie_image_flash_temp_android",
+          "feature_flag_variation": false
+        },
+        {
+          "feature_flag_key": "waiting_screen_with_animation_temp_android",
+          "feature_flag_variation": true
+        }
+      ],
+      "veriff_sdk_version": "4.6.0"
+    },
+    "app": "mobile",
+    "feature": "verification",
+    "name": "success",
+    "origin": "isSDKAndroid",
+    "type": "business"
+  },
+  "message": {
+    "microphone_permission_triggered": {
+      "additional_data": {
+        "veriff_sdk_version": "4.6.0"
+      },
+      "app": "mobile",
+      "feature": "microphone_permission_triggered",
+      "name": "message",
+      "origin": "isSDKAndroid",
+      "type": "business"
+    },
+    "camera_permission_triggered": {
+      "additional_data": {
+        "veriff_sdk_version": "4.6.0"
+      },
+      "app": "mobile",
+      "feature": "camera_permission_triggered",
+      "name": "message",
+      "origin": "isSDKAndroid",
+      "type": "business"
+    },
+    "camera_permission_granted": {
+      "additional_data": {
+        "veriff_sdk_version": "4.6.0"
+      },
+      "app": "mobile",
+      "feature": "camera_permission_granted",
+      "name": "message",
+      "origin": "isSDKAndroid",
+      "type": "business"
+    },
+    "microphone_permission_declined": {
+      "additional_data": {
+        "veriff_sdk_version": "4.6.0"
+      },
+      "app": "mobile",
+      "feature": "microphone_permission_declined",
+      "name": "message",
+      "origin": "isSDKAndroid",
+      "type": "business"
+    },
+    "country-select-dropdown": {
+      "additional_data": {
+        "veriff_sdk_version": "4.6.0"
+      },
+      "app": "mobile",
+      "feature": "country-select-dropdown",
+      "name": "message",
+      "origin": "isSDKAndroid",
+      "type": "view"
+    },
+    "country-select-chosen": {
+      "additional_data": {
+        "veriff_sdk_version": "4.6.0"
+      },
+      "app": "mobile",
+      "feature": "country-select-chosen",
+      "name": "message",
+      "origin": "isSDKAndroid",
+      "type": "view"
+    },
+    "country-select-continue": {
+      "additional_data": {
+        "veriff_sdk_version": "4.6.0"
+      },
+      "app": "mobile",
+      "feature": "country-select-continue",
+      "name": "message",
+      "origin": "isSDKAndroid",
+      "type": "view"
+    },
+    "upload_view_started": {
+      "additional_data": {
+        "veriff_sdk_version": "4.6.0"
+      },
+      "app": "mobile",
+      "feature": "upload_view_started",
+      "name": "message",
+      "origin": "isSDKAndroid",
+      "type": "info"
+    },
+    "upload_session_update": {
+      "additional_data": {
+        "message": "checkForFailedOrErrorUploads",
+        "veriff_sdk_version": "4.6.0"
+      },
+      "app": "mobile",
+      "feature": "upload_session_update",
+      "name": "message",
+      "origin": "isSDKAndroid",
+      "type": "info"
+    }
+  }
+}
