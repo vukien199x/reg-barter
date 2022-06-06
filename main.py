@@ -8,11 +8,11 @@ from veriff import VeriffClient
 if __name__ == '__main__':
     andr = AndroidDevice(str(uuid.uuid4()), 'Sony G8142', '', 28, str(uuid.uuid4()))
     proxies = {
-        "http": "socks5://bpm-s5-45.57.236.20_1080:gK5Jz3aX0@173.208.239.130:22222",
-        "https": "socks5://bpm-s5-45.57.236.20_1080:gK5Jz3aX0@173.208.239.130:22222"
+        "http": "http://127.0.0.1:8080",
+        "https": "http://127.0.0.1:8080"
     }
-    client = BarterClient(andr, "dinkin1037@mailforspam.com", "Tuyen1997@",
-                          "+447448964458", "Tuyen", "Vu", "GB", proxies=proxies)
+    client = BarterClient(andr, "ngaynaynamxua1@mailforspam.com", "Tuyen1997@",
+                          "+447448964556", "Tuyen", "Vu", "GB", proxies=proxies)
     res = client.check_ip()
     print(res)
     res = client.sign_up()
@@ -30,7 +30,7 @@ if __name__ == '__main__':
     print(res)
     redirect_url = res["Data"]["RedirectUrl"]
     token = redirect_url.replace("https://alchemy.veriff.com/v/", "")
-    veriff_client = VeriffClient(token)
+    veriff_client = VeriffClient(token, proxies=proxies)
     res = veriff_client.session()
     print(res)
     session_id = res["activeVerificationSession"]["id"]

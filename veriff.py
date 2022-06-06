@@ -54,17 +54,17 @@ class VeriffClient:
         return self.BASE_URL + path
 
     def _http_get(self, url: str):
-        resp = requests.get(url, headers=self._http_headers(), proxies=self.proxies)
+        resp = requests.get(url, headers=self._http_headers(), proxies=self.proxies, verify=False)
         return resp.json()
 
     def _http_post(self, url: str, data: dict = None):
-        resp = requests.post(url, headers=self._http_headers(), json=data, proxies=self.proxies)
+        resp = requests.post(url, headers=self._http_headers(), json=data, proxies=self.proxies, verify=False)
         return resp.json()
 
     def started(self, session_id: str):
         res = requests.patch(self._url(f"v2/verifications/{session_id}"),
                              json={"status": "started"},
-                             proxies=self.proxies)
+                             proxies=self.proxies, verify=False)
         return res.json()
 
     def session(self):
@@ -80,7 +80,7 @@ class VeriffClient:
         return self._http_get(self._url("api/v2/config"))
 
     def waiting_rooms(self):
-        return requests.put(self._url("api/v2/waiting-rooms"), proxies=self.proxies)
+        return requests.put(self._url("api/v2/waiting-rooms"), proxies=self.proxies, verify=False)
 
     def event(self, event_type: str, feature: str = None, params: dict = None):
         print(event_type)
@@ -124,7 +124,7 @@ class VeriffClient:
         footer = str.encode("\n\n".join(fitems))
         data = b'\n\n'.join([head, file, footer])
         urllib3.disable_warnings()
-        resp = requests.post(url, headers=headers, data=data, proxies=self.proxies)
+        resp = requests.post(url, headers=headers, data=data, proxies=self.proxies, verify=False)
         return resp.json()
 
     def actions(self, actions: list):
