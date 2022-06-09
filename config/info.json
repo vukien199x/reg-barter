@@ -1,0 +1,31 @@
+{
+  "email": "diemtran2403@gmail.com",
+  "passwd": "Tuyen1997@",
+  "phone": "447376072102",
+  "first_name": "Diem",
+  "last_name": "Tran",
+  "country": "GB",
+  "proxy": {
+    "mode": "http",
+    "user": "user-barter-sessionduration-30",
+    "passwd": "AHtx6PHqx4g6",
+    "host": "gb.smartproxy.com",
+    "port": 30008
+  },
+  "documents": {
+    "images": {
+      "document-front-pre": "data/blx-front.jpg",
+      "document-front": "data/blx-front.jpg",
+      "document-back-pre": "data/blx-back.jpg",
+      "document-back": "data/blx-back.jpg",
+      "face-pre": "data/face.jpg",
+      "face": "data/face.jpg"
+    },
+    "videos": {
+      "document-front-pre-video": "data/video-front.mp4",
+      "document-back-pre-video": "data/video-back.mp4",
+      "face-pre-video": "data/face.mp4",
+      "face": "data/face.mp4"
+    }
+  }
+}
