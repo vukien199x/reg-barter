@@ -39,11 +39,11 @@ class BarterClient:
         return self.BASE_URL + path
 
     def _http_get(self, url: str):
-        resp = requests.get(url, headers=self._http_headers(), proxies=self.proxies)
+        resp = requests.get(url, headers=self._http_headers(), proxies=self.proxies, verify=False)
         return resp.json()
 
     def _http_post(self, url: str, data: dict = None):
-        resp = requests.post(url, headers=self._http_headers(), json=data, proxies=self.proxies)
+        resp = requests.post(url, headers=self._http_headers(), json=data, proxies=self.proxies, verify=False)
         return resp.json()
 
     def check_ip(self):
