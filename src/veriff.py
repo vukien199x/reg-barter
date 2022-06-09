@@ -1,5 +1,6 @@
 import datetime
 import json
+import logging
 import random
 import time
 import uuid
@@ -31,6 +32,7 @@ class VeriffClient:
 
     def __init__(self, token: str, os_version: str = "28", version_code: int = "406009",
                  veriff_version: str = "4.6.0", proxies: dict = None):
+        self.logger_ = logging.getLogger('bt')
         self.token = token
         self.veriff_version = veriff_version
         self.os_version = os_version
@@ -86,7 +88,6 @@ class VeriffClient:
         return requests.put(self._url("api/v2/waiting-rooms"), proxies=self.proxies)
 
     def event(self, event_type: str, feature: str = None, params: dict = None):
-        print(event_type)
         if event_type not in self.events:
             return None
         content = self.events[event_type]
@@ -95,13 +96,15 @@ class VeriffClient:
                 content = content[feature]
         content["timestamp"] = int(time.time())
         content = convert_params_event(content, params)
-        print(content)
         if content:
             return self._http_post(self._url(f"v1/verifications/{self.token}/event"), {"events": [content]})
         return None
 
-    def upload(self, session_id: str, upload_type: str, path_file: str, document_type: str, sleep: list = [1, 2]):
-        print(f"Upload {document_type}")
+    def upload(self, session_id: str, upload_type: str, path_file: str, document_type: str,
+               inflow_feedback: bool = False, mrz: bool = False, sleep=None):
+        if sleep is None:
+            sleep = [1, 2]
+        self.logger_.debug(f"Upload {document_type}")
         headers = self._http_headers()
         url = self._url(f"api/v2/verifications/{session_id}/{upload_type}")
         boundary = str(uuid.uuid4())
@@ -115,6 +118,10 @@ class VeriffClient:
                   b'Content-Transfer-Encoding: binary',
                   b'Content-Type: application/octet-stream', str.encode(f'Content-Length: {len(file)}') + b'\x0d\x0a']
         head = b"\x0d\x0a".join(hitems)
+        tbytes = b"\x74\x72\x75\x65"
+        fbytes = b"\x66\x61\x6c\x73\x65"
+        feedback_bytes = tbytes if inflow_feedback else fbytes
+        mrz_bytes = tbytes if mrz else fbytes
         if upload_type == "images":
             context = '{"context":"' + document_type + '"}'
             fitems = [str.encode(f'--{boundary}'), b'Content-Disposition: form-data; name="metadata"',
@@ -123,16 +130,17 @@ class VeriffClient:
                       str.encode(f'--{boundary}'),
                       b'Content-Disposition: form-data; name="inflowFeedback"', b'Content-Transfer-Encoding: binary',
                       b'Content-Type: application/json; charset=UTF-8',
-                      str.encode(f'Content-Length: {len("true")}') + b'\x0d\x0a',
-                      b"\x74\x72\x75\x65", str.encode(f'--{boundary}'), b'Content-Disposition: form-data; name="mrz"',
+                      str.encode(f'Content-Length: {len(str(inflow_feedback).lower())}') + b'\x0d\x0a', feedback_bytes,
+                      str.encode(f'--{boundary}'), b'Content-Disposition: form-data; name="mrz"',
                       b'Content-Transfer-Encoding: binary',
                       b'Content-Type: application/json; charset=UTF-8',
-                      str.encode(f'Content-Length: {len("false")}') + b'\x0d\x0a', b"\x66\x61\x6c\x73\x65",
+                      str.encode(f'Content-Length: {len(str(mrz).lower())}') + b'\x0d\x0a', mrz_bytes,
                       str.encode(f'--{boundary}--') + b'\x0d\x0a']
         else:
             timestamp = datetime.datetime.utcnow().isoformat(timespec='milliseconds')
             duration = VideoFileClip(path_file).duration * 1000
-            context = '{"timestamp":"' + timestamp + 'Z","duration":' + str(duration) + ',"context":"' + document_type + '"}'
+            context = '{"timestamp":"' + timestamp + 'Z","duration":' + str(
+                duration) + ',"context":"' + document_type + '"}'
             fitems = [str.encode(f'--{boundary}'), b'Content-Disposition: form-data; name="metadata"',
                       b'Content-Transfer-Encoding: binary', b'Content-Type: application/json; charset=UTF-8',
                       str.encode(f'Content-Length: {len(context)}') + b'\x0d\x0a', str.encode(context),
@@ -146,11 +154,12 @@ class VeriffClient:
         return resp.json()
 
     def actions(self, actions: list):
+        self.logger_.debug("Start send request with actions")
         for action in actions:
+            self.logger_.debug(f"Send action {action}")
             if isinstance(action, dict):
                 res = self.event(**action)
             else:
                 res = self.event(action)
-            print(action)
             time.sleep(random.randint(1, 10) / 1000)
-            print(res)
+            self.logger_.debug(res)

@@ -26,9 +26,7 @@ def setup_logging(module: str, level: str, log_dir: str = config.LOG_DIR):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Verify acc barter')
     parser.add_argument('--level', type=str, default='DEBUG', help='logging level')
-    parser.add_argument("--info", type=str, default="config/info.json", help="Path file json info acc barter")
+    parser.add_argument('--folder', type=str, required=True, help="Path of folder image,video, json config")
     args = parser.parse_args()
     setup_logging("bt", args.level)
-    with open(args.info, "r") as f:
-        info = json.load(f)
-        VerifyBarter(info).verify_barter()
+    VerifyBarter(args.folder).verify()

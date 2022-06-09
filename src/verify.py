@@ -1,6 +1,6 @@
+import json
 import logging
 import os
-import random
 import time
 import uuid
 
@@ -16,13 +16,58 @@ class VerifyBarter:
 
     DEVICE_NAME = "Sony G8142"
     OS_VERSION = 28
+    NOT_REQUIRED_FILE = {
+        "document-front-pre": "document-front",
+        "document-back-pre": "document-back",
+        "face-pre": "face"
+    }
 
-    def __init__(self, info: dict):
+    def __init__(self, folder: str):
         self.logger_ = logging.getLogger('bt')
         self.device_ = AndroidDevice(str(uuid.uuid4()), self.DEVICE_NAME, '', self.OS_VERSION, str(uuid.uuid4()))
-        self.info_ = info
+        self.client_ = None
+        self.info_ = {}
+        self.folder_ = folder
 
-    def verify_barter(self):
+    def check_info(self):
+        if not os.path.exists(self.folder_):
+            self.logger_.debug(f"{self.logger_} not exists")
+            return False
+        images = {}
+        videos = {}
+        for file in os.listdir(self.folder_):
+            file_path = os.path.join(self.folder_, file)
+            if os.path.getsize(file_path) > 12 * 1000 * 1000:
+                self.logger_.debug(f"File {file_path} size does not exceed 12 MB")
+                return False
+            if file.endswith(".json"):
+                with open(file_path, "r") as f:
+                    self.info_ = json.load(f)
+            items = os.path.splitext(file)
+            name_file = items[0]
+            if items[-1] == ".mp4":
+                videos[name_file] = file_path
+            else:
+                images[name_file] = file_path
+        for k, v in self.NOT_REQUIRED_FILE.items():
+            if k not in images:
+                if v not in images:
+                    self.logger_.debug(f"{v} not exists")
+                    return False
+            images[k] = images[v]
+        documents = {
+            "images": images,
+            "videos": videos
+        }
+        self.info_["documents"] = documents
+        self.logger_.debug(self.info_)
+        return True
+
+    def verify(self):
+        status = self.check_info()
+        self.logger_.debug(self.info_)
+        if not status:
+            return False
         proxy = self.info_.get("proxy")
         proxies = None
         if proxy:
@@ -31,29 +76,29 @@ class VerifyBarter:
                 "http": url,
                 "https": url
             }
-        client = BarterClient(self.device_, self.info_['email'], self.info_['passwd'], self.info_['phone'],
+        self.client_ = BarterClient(self.device_, self.info_['email'], self.info_['passwd'], self.info_['phone'],
                               self.info_['first_name'], self.info_['last_name'],
                               self.info_.get("country", "GB"), proxies=proxies)
-        res = client.check_ip()
+        res = self.client_.check_ip()
         self.logger_.debug(res)
-        res = client.sign_up()
+        res = self.client_.sign_up()
         self.logger_.debug(res)
         if res.get("Status", "fail") == "fail":
             self.logger_.debug(f"Sign up fail with => {res.get('Message')}")
-            return None
+            return False
         otp = str(input('OTP: '))
-        res = client.confirm_mobile_number(otp)
-        print(res)
-        res = client.confirm_account()
-        print(res)
+        res = self.client_.confirm_mobile_number(otp)
+        self.logger_.debug(res)
+        res = self.client_.confirm_account()
+        self.logger_.debug(res)
         # Verify account
-        res = client.init_verify()
-        print(res)
+        res = self.client_.init_verify()
+        self.logger_.debug(res)
         redirect_url = res["Data"]["RedirectUrl"]
         token = redirect_url.replace(config.ALCHEMY_URL, "")
         veriff_client = VeriffClient(token)
         res = veriff_client.session()
-        print(res)
+        self.logger_.debug(res)
         session_id = res["activeVerificationSession"]["id"]
         veriff_client.actions(["client_started", "device_info_received"])
         veriff_client.config()
@@ -90,7 +135,7 @@ class VerifyBarter:
         ]
         veriff_client.actions(actions)
         veriff_client.verifications(f"{session_id}/documents", {
-            "country": client.country.upper(),
+            "country": self.client_.country.upper(),
             "type": "DRIVERS_LICENSE"
         })
         veriff_client.actions(["document_selected"])
@@ -108,8 +153,8 @@ class VerifyBarter:
         documents = self.info_["documents"]
         res = veriff_client.upload(session_id, "images",
                                    documents["images"]["document-front-pre"],
-                                   "document-front-pre")
-        print(res)
+                                   "document-front-pre", inflow_feedback=True)
+        self.logger_.debug(res)
         time.sleep(20)
         video_front_path = documents["videos"]["document-front-pre-video"]
         video_front = VideoFileClip(video_front_path)
@@ -126,8 +171,9 @@ class VerifyBarter:
         ]
         veriff_client.actions(actions)
         # Upload document back pre
-        res = veriff_client.upload(session_id, "images", documents["images"]["document-back-pre"], "document-back-pre")
-        print(res)
+        res = veriff_client.upload(session_id, "images", documents["images"]["document-back-pre"],
+                                   "document-back-pre", inflow_feedback=True)
+        self.logger_.debug(res)
         video_back_path = documents["videos"]["document-back-pre-video"]
         video_back = VideoFileClip(video_back_path)
         video_back_length = os.path.getsize(video_back_path)
@@ -143,8 +189,9 @@ class VerifyBarter:
         ]
         veriff_client.actions(actions)
         # Upload face-pre
-        res = veriff_client.upload(session_id, "images", documents["images"]["face-pre"], "face-pre")
-        print(res)
+        res = veriff_client.upload(session_id, "images", documents["images"]["face-pre"],
+                                   "face-pre", inflow_feedback=True)
+        self.logger_.debug(res)
         video_face_path = documents["videos"]["face-pre-video"]
         face = VideoFileClip(video_face_path)
         face_length = os.path.getsize(video_face_path)
@@ -156,20 +203,20 @@ class VerifyBarter:
         ]
         veriff_client.actions(actions)
         res = veriff_client.upload(session_id, "images", documents["images"]["document-front"], "document-front")
-        print(res)
+        self.logger_.debug(res)
         res = veriff_client.upload(session_id, "videos", documents["videos"]["document-front-pre-video"],
                                    "document-front-pre-video", sleep=[2, 5])
-        print(res)
+        self.logger_.debug(res)
         res = veriff_client.upload(session_id, "images", documents["images"]["document-back"], "document-back")
-        print(res)
+        self.logger_.debug(res)
         res = veriff_client.upload(session_id, "videos", documents["videos"]["document-back-pre-video"],
                                    "document-back-pre-video", sleep=[2, 5])
-        print(res)
+        self.logger_.debug(res)
         res = veriff_client.upload(session_id, "images", documents["images"]["face"], "face")
-        print(res)
+        self.logger_.debug(res)
         res = veriff_client.upload(session_id, "videos", documents["videos"]["face-pre-video"], "face-pre-video",
                                    sleep=[2, 5])
-        print(res)
+        self.logger_.debug(res)
         actions = [
             {"event_type": "message", "feature": "upload_session_update"}
         ]
@@ -181,12 +228,14 @@ class VerifyBarter:
         ]
         veriff_client.actions(actions)
         res = veriff_client.session()
-        print(res)
+        self.logger_.debug(res)
         res = veriff_client.session()
-        print(res)
+        self.logger_.debug(res)
         res = veriff_client.session()
-        print(res)
+        self.logger_.debug(res)
         actions = [
             "decision_received", "success"
         ]
         veriff_client.actions(actions)
+        self.logger_.debug("Send message verify barter successfully")
+        return True

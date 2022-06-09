@@ -1,0 +1,15 @@
+{
+  "email": "quachhoakhiem1961@gmail.com",
+  "passwd": "Tuyen1997@",
+  "phone": "+447365946960",
+  "first_name": "Quach",
+  "last_name": "Hoa",
+  "country": "GB",
+  "proxy": {
+    "mode": "http",
+    "user": "user-barter-sessionduration-30",
+    "passwd": "AHtx6PHqx4g6",
+    "host": "gb.smartproxy.com",
+    "port": 30008
+  }
+}
