@@ -66,17 +66,18 @@ class VeriffClient:
         resp = requests.post(url, headers=self._http_headers(), json=data, proxies=self.proxies)
         return resp.json()
 
+    def _http_patch(self, url, data: dict = None):
+        resp = requests.patch(url, headers=self._http_headers(), json=data, proxies=self.proxies)
+        return resp.json()
+
     def status(self, session_id: str, status: str = "started"):
-        res = requests.patch(self._url(f"v2/verifications/{session_id}"),
-                             json={"status": status},
-                             proxies=self.proxies)
-        return res.json()
+        return self._http_patch(self._url(f"api/v2/verifications/{session_id}"), {"status": status})
 
     def session(self):
         return self._http_get(self._url("api/v2/sessions"))
 
-    def verifications(self, path: str, data: dict):
-        return self._http_post(self._url(f"api/v1/{self.token}/{path}"), data)
+    def verifications(self, session_id: str, path: str, data: dict):
+        return self._http_patch(self._url(f"api/v2/verifications/{session_id}/{path}"), data)
 
     def utils(self, path: str):
         return self._http_get(self._url(f"api/v1/{self.token}/{path}"))
@@ -85,7 +86,9 @@ class VeriffClient:
         return self._http_get(self._url("api/v2/config"))
 
     def waiting_rooms(self):
-        return requests.put(self._url("api/v2/waiting-rooms"), proxies=self.proxies)
+        return requests.put(self._url("api/v2/waiting-rooms"),
+                            headers=self._http_headers(),
+                            proxies=self.proxies).json()
 
     def event(self, event_type: str, feature: str = None, params: dict = None):
         if event_type not in self.events:
@@ -138,7 +141,7 @@ class VeriffClient:
                       str.encode(f'--{boundary}--') + b'\x0d\x0a']
         else:
             timestamp = datetime.datetime.utcnow().isoformat(timespec='milliseconds')
-            duration = VideoFileClip(path_file).duration * 1000
+            duration = int(VideoFileClip(path_file).duration * 1000)
             context = '{"timestamp":"' + timestamp + 'Z","duration":' + str(
                 duration) + ',"context":"' + document_type + '"}'
             fitems = [str.encode(f'--{boundary}'), b'Content-Disposition: form-data; name="metadata"',
@@ -161,5 +164,5 @@ class VeriffClient:
                 res = self.event(**action)
             else:
                 res = self.event(action)
-            time.sleep(random.randint(1, 10) / 1000)
+            time.sleep(random.randint(50, 300) / 1000)
             self.logger_.debug(res)
